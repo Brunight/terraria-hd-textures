@@ -167,6 +167,15 @@ jobs:
         env:
           input: 'temp5'
 
+      - name: Upload release zips
+        uses: actions/upload-artifact@v4
+        with:
+          name: "${{ env.release_version }}-${{ env.terraria_version }}"
+          path: "*.zip"
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
