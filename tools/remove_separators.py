@@ -370,6 +370,7 @@ CLASS_SEPARATORS = {
     'wizarddefault-20x736': [],
     'wizarddefaultparty-20x736': [],
     'wraitheyes-13x100': [],
+    'wyvern-46x40': [],
     'xmas-32x64': [],
     'xmas-198x65': { 'column': SEP(33), 'row': [64] },
     'xmas-363x65': { 'column': SEP(33), 'row': [64] },
