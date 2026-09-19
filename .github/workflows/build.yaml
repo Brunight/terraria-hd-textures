@@ -1,16 +1,24 @@
 name: Build
 
-on: push
+on:
+  workflow_dispatch:
+    inputs:
+      terraria_version:
+        description: "The Terraria version to build for. Example: 1.4.5"
+        required: true
+      release_version:
+        description: "The release version to build for. Example: v0.16.4"
+        required: true
 
 jobs:
   build:
     runs-on: windows-latest
     if: github.ref == 'refs/heads/npc-portraits'
     env:
-      terraria_version: '1.4.5'
-      release_version: 'v0.16.4'
+      terraria_version: '${{ inputs.terraria_version }}'
+      release_version: '${{ inputs.release_version }}'
 
-      folders: ",\\UI,\\UI\\Workshop,\\UI\\WorldGen,\\UI\\PlayerResourceSets,\\UI\\PlayerResourceSets\\HorizontalBars,\\UI\\PlayerResourceSets\\FancyClassic,\\UI\\CharCreation,\\UI\\WorldCreation,\\UI\\Minimap,\\UI\\Minimap\\Leaf,\\UI\\Minimap\\StoneGold,\\UI\\Minimap\\Golden,\\UI\\Minimap\\Default,\\UI\\Minimap\\Valkyrie,\\UI\\Minimap\\TwigLeaf,\\UI\\Minimap\\Sticks,\\UI\\Minimap\\Retro,\\UI\\Minimap\\Remix,\\UI\\Bestiary,\\UI\\Bestiary\\NPCs,\\UI\\Creative,\\Accessories,\\TownNPCs,\\TownNPCs\\Portraits,\\TownNPCs\\Shimmered,\\Armor"
+      folders: ",\\Accessories,\\Armor,\\Backgrounds,\\Backgrounds\\Ambience,\\Misc,\\Misc\\MoonExplosion,\\Misc\\NebulaSky,\\Misc\\SolarSky,\\Misc\\StarDustSky,\\Misc\\Sunflare,\\Misc\\Sunflare\\Lens,\\Misc\\Sunrise,\\Misc\\Sunset,\\Misc\\TileOutlines,\\Misc\\VortexSky,\\SplashScreens,\\TownNPCs,\\TownNPCs\\Portraits,\\TownNPCs\\Shimmered,\\UI,\\UI\\Bestiary,\\UI\\Bestiary\\NPCs,\\UI\\CharCreation,\\UI\\Creative,\\UI\\Minimap,\\UI\\Minimap\\Default,\\UI\\Minimap\\Golden,\\UI\\Minimap\\Leaf,\\UI\\Minimap\\Remix,\\UI\\Minimap\\Retro,\\UI\\Minimap\\Sticks,\\UI\\Minimap\\StoneGold,\\UI\\Minimap\\TwigLeaf,\\UI\\Minimap\\Valkyrie,\\UI\\PlayerResourceSets,\\UI\\PlayerResourceSets\\FancyClassic,\\UI\\PlayerResourceSets\\HorizontalBars,\\UI\\Workshop,\\UI\\WorldCreation,\\UI\\WorldGen"
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
